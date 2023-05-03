@@ -15,13 +15,13 @@ namespace openLib {
 		
 		void* loadSymbol(void* libHandle, std::string sym);
 	}
-	class DL {
+	class DynamicLibrary {
 	protected:
 		void* lib;
 		std::unordered_map<std::string, void*> sims;
 		
 	public:
-		DL(const std::filesystem::path& path, std::vector<std::string> sims = {});
+		DynamicLibrary(const std::filesystem::path& path, std::vector<std::string> sims = {});
 		
 		template<typename T = void*>
 		T getSim(std::string simStr);
@@ -32,8 +32,10 @@ namespace openLib {
 		template<typename T = void*>
 		T getSimFromLib(std::string simStr);
 		
-		~DL();
+		~DynamicLibrary();
 	};
+	
+	using DL = DynamicLibrary;
 }
 
 #include "openLib.inl"

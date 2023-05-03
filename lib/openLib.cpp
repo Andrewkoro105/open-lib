@@ -52,7 +52,7 @@ namespace openLib{
 	}
 
 	
-	DL::DL(const std::filesystem::path& path, std::vector<std::string> sims){
+	DynamicLibrary::DynamicLibrary(const std::filesystem::path& path, std::vector<std::string> sims){
 		lib = detail::openLib(path.string());
 		detail::printLibError();
 		for(const auto& sim: sims){
@@ -60,7 +60,7 @@ namespace openLib{
 		}
 	}
 	
-	DL::~DL() {
+	DynamicLibrary::~DynamicLibrary() {
 		detail::closeLib(lib);
 	}
 }

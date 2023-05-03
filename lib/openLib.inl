@@ -3,7 +3,7 @@
 namespace openLib{
 	
 	template<typename T>
-	T DL::getSim(std::string simStr) {
+	T DynamicLibrary::getSim(std::string simStr) {
 		void* sim;
 		if (sims[simStr]){
 			sim = sims[simStr];
@@ -20,7 +20,7 @@ namespace openLib{
 	}
 	
 	template<typename T>
-	T DL::getSimFromDB(std::string simStr) {
+	T DynamicLibrary::getSimFromDB(std::string simStr) {
 		void* sim =  sims[simStr];
 		if constexpr(std::is_reference_v<T>){
 			return static_cast<T>(sim);
@@ -30,7 +30,7 @@ namespace openLib{
 	}
 	
 	template<typename T>
-	T DL::getSimFromLib(std::string simStr) {
+	T DynamicLibrary::getSimFromLib(std::string simStr) {
 		void* sim =  detail::loadSymbol(lib, std::move(simStr));
 		detail::printLibError();
 		sims[simStr] = sim;
