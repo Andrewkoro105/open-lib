@@ -19,10 +19,9 @@ namespace openLib {
 	protected:
 		void* lib;
 		std::unordered_map<std::string, void*> sims;
-		bool allLoad;
 		
 	public:
-		DL(const std::filesystem::path& path, std::vector<std::string> sims = {}, bool allLoad = false);
+		DL(const std::filesystem::path& path, std::vector<std::string> sims = {});
 		
 		template<typename T = void*>
 		T getSim(std::string simStr);

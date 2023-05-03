@@ -52,18 +52,15 @@ namespace openLib{
 	}
 
 	
-	DL::DL(const std::filesystem::path& path, std::vector<std::string> sims, bool allLoad) : allLoad(allLoad){
+	DL::DL(const std::filesystem::path& path, std::vector<std::string> sims){
 		lib = detail::openLib(path.string());
 		detail::printLibError();
 		for(const auto& sim: sims){
 			this->sims[sim] = detail::loadSymbol(lib, sim);
 		}
-		if (allLoad){
-			detail::closeLib(lib);
-		}
 	}
 	
 	DL::~DL() {
-		if (!allLoad) detail::closeLib(lib);
+		detail::closeLib(lib);
 	}
 }
