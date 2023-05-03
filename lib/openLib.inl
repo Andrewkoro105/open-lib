@@ -30,7 +30,7 @@ namespace openLib{
 	}
 	
 	template<typename T>
-	T DL::getSimFromLib(std::string simStr, bool allLoad) {
+	T DL::getSimFromLib(std::string simStr) {
 		void* sim =  detail::loadSymbol(lib, std::move(simStr));
 		detail::printLibError();
 		sims[simStr] = sim;

@@ -30,7 +30,7 @@ namespace openLib {
 		T getSimFromDB(std::string simStr);
 		
 		template<typename T = void*>
-		T getSimFromLib(std::string simStr, bool allLoad = false);
+		T getSimFromLib(std::string simStr);
 		
 		~DL();
 	};
