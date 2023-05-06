@@ -19,7 +19,7 @@ namespace openLib {
 	protected:
 		void* lib;
 		std::unordered_map<std::string, void*> sims;
-		
+	
 	public:
 		DynamicLibrary(const std::filesystem::path& path, std::vector<std::string> sims = {});
 		
