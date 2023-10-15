@@ -1,16 +1,16 @@
 #include <utility>
 
-namespace openLib {
+namespace open_lib {
 	
 	template<typename T>
-	T DynamicLibrary::getSim(std::string simStr) {
+	T DynamicLibrary::get_sim(std::string sim_str) {
 		void* sim;
-		if(sims[simStr]) {
-			sim = sims[simStr];
+		if(sims[sim_str]) {
+			sim = sims[sim_str];
 		} else {
-			sim = detail::loadSymbol(lib, std::move(simStr));
-			detail::printLibError();
-			sims[simStr] = sim;
+			sim = detail::load_symbol(lib, std::move(sim_str));
+			detail::print_lib_error();
+			sims[sim_str] = sim;
 		}
 		if constexpr(std::is_pointer_v<T>) {
 			return (T)(sim);
@@ -20,8 +20,8 @@ namespace openLib {
 	}
 	
 	template<typename T>
-	T DynamicLibrary::getSimFromDB(std::string simStr) {
-		void* sim = sims[simStr];
+	T DynamicLibrary::get_sim_from_d_b(std::string sim_str) {
+		void* sim = sims[sim_str];
 		if constexpr(std::is_reference_v<T>) {
 			return static_cast<T>(sim);
 		} else {
@@ -30,10 +30,10 @@ namespace openLib {
 	}
 	
 	template<typename T>
-	T DynamicLibrary::getSimFromLib(std::string simStr) {
-		void* sim = detail::loadSymbol(lib, std::move(simStr));
-		detail::printLibError();
-		sims[simStr] = sim;
+	T DynamicLibrary::get_sim_from_lib(std::string sim_str) {
+		void* sim = detail::load_symbol(lib, std::move(sim_str));
+		detail::print_lib_error();
+		sims[sim_str] = sim;
 		if constexpr(std::is_pointer_v<T> || std::is_reference_v<T>) {
 			return static_cast<T>(sim);
 		} else {

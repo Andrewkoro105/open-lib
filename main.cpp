@@ -1,8 +1,8 @@
 #include <iostream>
-#include <openLib/openLib.hpp>
+#include <open_lib/open_lib.hpp>
 
 int main() {
-	openLib::DL dL{"./liblib"   , {"foo", "value"}};
-	std::cout << dL.getSim<int(*)(int, int)>("foo")(3, 3) << '\n' << dL.getSim<int>("value") << std::endl;
+	open_lib::DL dL{"./liblib"   , {"foo", "value"}};
+	std::cout << dL.get_sim<int(*)(int, int)>("foo")(3, 3) << '\n' << dL.get_sim<int>("value") << std::endl;
 	return 0;
 }

@@ -5,15 +5,15 @@
 #include <unordered_map>
 #include <vector>
 
-namespace openLib {
+namespace open_lib {
 	namespace detail {
-		void printLibError();
+		void print_lib_error();
 		
-		void* openLib(const std::string& libName);
+		void* open_lib(const std::string& lib_name);
 		
-		int closeLib(void* libHandle);
+		int close_lib(void* lib_handle);
 		
-		void* loadSymbol(void* libHandle, std::string sym);
+		void* load_symbol(void* lib_handle, std::string sym);
 	}
 	class DynamicLibrary {
 	protected:
@@ -24,13 +24,13 @@ namespace openLib {
 		DynamicLibrary(const std::filesystem::path& path, std::vector<std::string> sims = {});
 		
 		template<typename T = void*>
-		T getSim(std::string simStr);
+		T get_sim(std::string sim_str);
 		
 		template<typename T = void*>
-		T getSimFromDB(std::string simStr);
+		T get_sim_from_d_b(std::string sim_str);
 		
 		template<typename T = void*>
-		T getSimFromLib(std::string simStr);
+		T get_sim_from_lib(std::string sim_str);
 		
 		~DynamicLibrary();
 	};
@@ -38,4 +38,4 @@ namespace openLib {
 	using DL = DynamicLibrary;
 }
 
-#include "openLib.inl"
+#include "open_lib.inl"
