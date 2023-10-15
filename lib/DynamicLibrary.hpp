@@ -38,4 +38,4 @@ namespace open_lib {
 	using DL = DynamicLibrary;
 }
 
-#include "open_lib.inl"
+#include "DynamicLibrary.inl"

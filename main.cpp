@@ -1,5 +1,5 @@
 #include <iostream>
-#include <open_lib/open_lib.hpp>
+#include <open-lib/DynamicLibrary.hpp>
 
 int main() {
 	open_lib::DL dL{"./liblib"   , {"foo", "value"}};
