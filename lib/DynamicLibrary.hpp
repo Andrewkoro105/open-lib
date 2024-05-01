@@ -6,6 +6,8 @@
 #include <vector>
 
 namespace open_lib {
+	std::string get_extension();
+	
 	namespace detail {
 		void print_lib_error();
 		
@@ -15,6 +17,7 @@ namespace open_lib {
 		
 		void* load_symbol(void* lib_handle, std::string sym);
 	}
+	
 	class DynamicLibrary {
 	protected:
 		void* lib;

@@ -6,22 +6,31 @@
 #if _WIN32
 #include <windows.h>
 #else
-
 #include <dlfcn.h> //dlopen
-
 #endif
 
 namespace open_lib {
+	std::string get_extension() {
+#if _WIN32
+		return ".dll";
+#else
+		return ".so";
+#endif
+	}
+	
 	namespace detail {
+		
 		void print_lib_error() {
 #if _WIN32
 			auto err =  GetLastError();
-			if(err)
+			if(err) {
 				throw std::runtime_error(std::to_string(err));
+			}
 #else
 			auto err = dlerror();
-			if(err)
+			if(err) {
 				throw std::runtime_error(err);
+			}
 #endif
 		}
 		
@@ -29,7 +38,7 @@ namespace open_lib {
 #if _WIN32
 			return LoadLibrary((lib_name + ".dll").c_str());
 #else
-			return dlopen((lib_name + ".so").c_str(), RTLD_LAZY);
+			return dlopen((lib_name + get_extension()).c_str(), RTLD_LAZY);
 #endif
 		}
 		
